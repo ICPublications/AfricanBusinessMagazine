@@ -1,0 +1,380 @@
+/*
+	Stylesheet: Content slider
+	Description: styles for content sliders
+*/
+
+/*---- Stop visible js building ----*/
+
+/* Old styles - used on homepage */
+.promoted-articles {
+	li {
+		display: none;
+
+		&:first-child {
+			display: block;
+		}
+
+		&.slide {
+			display: block;
+		}
+	}
+}
+
+/* New styles - used for galleries */
+.gallery-items, .thumbnail-nav {
+	li {
+		display: none;
+
+		&:first-child {
+			display: block;
+			width: 100%;
+		}
+
+		&.lcms-slide {
+			display: table-cell;
+		}
+	}
+}
+
+/*---- Basic styles ---*/
+
+/* Old styles - used on homepage */
+.viewport {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+.content-slider, .slider {
+	position: relative;
+}
+.slide {
+	float: left;
+}
+
+.bullet-nav {
+	padding: 0;
+	
+	> li {
+		@include inline-block;
+		list-style: none;
+		text-align: center;
+		
+		> a {
+			@include inline-block;
+			outline: 0;
+			text-decoration: none;
+		}
+	}	
+}
+
+/* New styles - used for galleries */
+
+.lcms-viewport {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+.lcms-slider {
+	display: table;
+	table-layout: fixed; /* Fixes image breaking out of container issue in FF */
+	position: relative;
+}
+
+.lcms-slide {
+	// float: left;
+}
+
+.lcms-slide {
+ display: table-cell;
+ vertical-align: middle;
+}
+
+.lcms-bullet-nav {
+	padding: 0;
+	
+	> li {
+		@include inline-block;
+		list-style: none;
+		text-align: center;
+		
+		> a {
+			@include inline-block;
+			outline: 0;
+			text-decoration: none;
+		}
+	}	
+}
+
+/*---- Homepage promo slider ---*/
+#promo-slider {
+	@include rem('margin-bottom', $section-spacing);
+	background: $block-color-1;
+
+	@include breakpoint($change-for-medium) {
+		margin-bottom: 0;
+	}
+
+	h2, p, a {
+		color: #fff;
+	}
+
+	article {
+		position: relative;
+	}
+
+	.read-more-link { color: lighten($primary-color, 12%); &:hover { text-decoration: underline; } }
+
+	.article-content {
+		@include rem('padding', $standard-padding);
+
+		@include breakpoint($change-for-medium) {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			z-index: 1;
+			@include rem('padding', 20px 30px 20px);
+			background: $block-color-1;
+			background: rgba($block-color-1, 0.8);
+		}
+	}
+
+	.slider-prev, .slider-next { display: none; }
+
+	.bullet-nav {
+		display: table;
+		table-layout: fixed;
+		width: 100%;
+
+		> li {
+			display: table-cell;
+			border-right: 1px solid #fff;
+
+			&:last-child { border: none; }
+		}
+
+		a {
+			display: block;
+			@include rem('padding', $standard-padding 0);
+			font-family: $secondary-font;
+			color: $body-font-color;
+			background: $block-color-2;
+
+			&.is-current-bullet {
+				background: $block-color-1;
+				color: #fff;
+			} 
+		}
+
+		@include breakpoint($change-for-medium) {
+			display: none;
+		}
+	}
+}
+
+.slider-title-nav {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	@include rem('margin-top', -10px);
+	@include rem('padding', 20px 20px 20px);
+	background: $block-color-1;
+
+	> li { display: table-cell; }
+	a {
+		display: block;
+		position: relative;
+		@include rem('padding', $standard-padding 0);
+		@include rem('margin', 0 $standard-spacing);
+		font-family: $secondary-font;
+		font-size: em(13px);
+		text-decoration: none; 
+		color: darken(#fff, 40%);
+
+		&:before {
+			@include pseudo-block('', block, absolute, 1);
+			top: 0;
+			width: 100%;
+			height: 1px;
+			background: darken(#fff, 40%);
+		}
+
+		&:hover {
+			color: #fff;
+			&:before { background: #fff; }
+		}
+
+		&.is-current-title {
+			color: #fff;
+			&:before { height: 3px; background: #fff; }
+		}
+	}
+}
+
+@include breakpoint($just-for-small) {
+	ul.slider-title-nav {
+		display: none;
+	}
+}
+
+/*---- Categories content slider on homepage ---*/
+@include breakpoint($just-for-small) {
+	.latest-articles {
+		.slide {
+			// @include rem('padding-right', $small-spacing);
+		}
+			
+		.bullet-nav  {
+			display: table;
+			table-layout: fixed;
+			width: 80%;
+			margin: -20px auto 0;
+
+			li {
+				display: table-cell;
+				text-indent: -9999px;
+
+				&:nth-child(even) {
+					display: none;
+				}
+
+				a {
+					display: block;
+					height: 5px;
+					margin: 0 $small-spacing;
+					background: $block-color-2;
+
+					&.is-current-bullet { background: $primary-color; }
+				}
+			}
+		}
+
+		.slider-prev, .slider-next {
+			width: 30px;
+			height: 30px;
+			text-indent: -9999px;
+			background: $primary-color;
+		}
+		
+		.slider-prev { 
+			position: relative;
+			float: left;
+			clear: left;
+			
+			&:before { 
+				@include pseudo-block('', block, absolute, 1);
+				@include arrow(10px, #fff, left);
+				top: 5px; left: 8px;
+			} 
+		}
+		.slider-next { 
+			position: relative;
+			float: right;
+			clear: right;
+
+			&:before { 
+				@include pseudo-block('', block, absolute, 1);
+				@include arrow(10px, #fff, right);
+				top: 5px; right: 8px;
+			} 
+		}
+	}
+}		
+
+/*---- Slimline controls ----*/
+.slimline {
+	.lcms-slider {
+		@extend .cf;
+	}
+
+	.lcms-slider-prev, .lcms-slider-next {
+		position: absolute;
+		top: 50%;
+		z-index: 3;
+		display: block;
+		width: 30px;
+		height: 90px;
+		margin-top: -50px;
+		text-indent: -999em;
+		background: rgba($secondary-color, 0.5);
+		
+		&:before { 
+			@include pseudo-block('', block, absolute, 1);
+			top: 50%;
+			margin-top: -7px;
+		} 
+
+		&:hover {
+			@include transition();
+			
+			background: #333;
+		}
+	}
+	.lcms-slider-prev {
+		left: 0;
+
+		&:before {
+			@include arrow(10px, #fff, left);
+			left: 9px;
+		}
+	}
+	.lcms-slider-next {
+		right: 0;
+
+		&:before {
+			@include arrow(10px, #fff, right);
+			right: 6px;
+		}
+	}
+	
+	.lcms-bullet-nav {
+		//display: table;
+		display: none;
+		table-layout: fixed;
+		width: 70%;
+		margin: -20px auto 0;
+
+		li {
+			display: table-cell;
+			text-indent: -999em;
+		}
+
+		a {
+			display: block;
+			height: 5px;
+			margin: 0 $small-spacing;
+			background: $block-color-2;
+
+			&.is-current-bullet { background: $primary-color; }
+		}
+	}
+}
+
+/*---- Thumbnail Nav ----*/
+.thumbnail-nav-holder {
+	@include rem('padding', 5px);
+	
+	.thumbnail {
+		@include transition();
+		@include opacity(0.5);
+
+		&:hover {
+			@include opacity(1);
+		}
+	}
+}
+
+@include breakpoint($change-for-medium) {
+
+	.thumbnail-nav {
+		.lcms-slider-prev, .lcms-slider-next {
+			display: none;
+		}
+
+		&:hover {
+			.lcms-slider-prev, .lcms-slider-next {
+				display: block;
+			}
+		}
+	}
+}

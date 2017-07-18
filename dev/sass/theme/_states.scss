@@ -1,0 +1,60 @@
+/*
+	Stylesheet: States
+	Description: State definitions
+*/
+
+/*---- Inputs ----*/
+.is-active-input {
+	background: #fff !important;
+}
+
+/*---- Tabs ----*/
+.is-active-tab {
+	color: $body-font-color !important;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom: none;
+}
+
+/*---- Content sliders ----*/	
+.is-current-bullet {
+	color: $primary-color !important; 
+	border-color: $primary-color !important;
+}
+
+#promo-slider {
+	.is-current-bullet {
+		color: #fff !important;
+	}
+}
+
+/*---- Fixed headers ----*/
+.is-floating {
+	position: fixed !important;
+	z-index: 100;
+	top: 0;
+	width: 100%;
+	display: none;
+}
+
+/*---- Sticky content ----*/
+.is-sticky {
+
+}
+
+.is-stuck-top {
+
+}
+
+.is-stuck {
+	position: absolute;
+}
+
+/*---- ??? ----*/
+.is-closed {
+	display: none !important;
+}
+
+.is-open {
+	display: block;
+}

@@ -1,0 +1,47 @@
+/*!
+	Theme Name: African Business Magazine
+	Author: Gethyn Jones / Antony Howlett
+	Author URI: http://www.gethynjonesdesign.co.uk / http://www.anthowlett.co.uk
+	Description: Bespoke Wordpress theme for the African Business Magazine website
+	Version: 1.0
+*/
+
+/*
+	Index
+	----------------
+	1. Base
+		- Reset CSS
+		- Settings
+		- Classes
+		- Logic
+		- Element Styles
+		
+	2. Layout
+		- Grid System
+		- Structural Elements
+	
+	3. Modules
+		- Navigation
+		- Features
+		
+	4. Theme
+		- Colour Schemes
+		- States
+		
+	5. Plugins
+*/
+
+/*-- 1. Base --*/
+@import "base";
+
+/*-- 2. Layout --*/
+@import "layout";
+
+/*-- 3. Modules --*/
+@import "modules";
+
+/*-- 4. Theme --*/
+@import "theme";
+
+/*-- 5. Plugins --*/
+@import "plugins";

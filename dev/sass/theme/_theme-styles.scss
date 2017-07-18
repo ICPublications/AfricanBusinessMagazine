@@ -1,0 +1,531 @@
+/*
+	Stylesheet: Color schemes
+	Description: Theme specific color scheme
+*/
+
+/*------ General inline elements ------*/
+a {
+
+	&:active {
+		position: relative;
+		top: 1px; 
+	}
+}
+
+p a:visited {
+	color: darken($primary-color, 10%);
+}
+
+blockquote {
+	float: left;
+	width: 55%;
+	@include rem('padding', 0 $large-padding);
+	margin: 5px 20px 10px 0;
+	color: $body-lighten;
+	background: $block-color-2;
+
+	@include breakpoint($change-for-medium) {
+		@include rem('margin-left', -40px);
+		font-size: em(18px);
+	}
+}
+
+.banner-text {
+	font-size: 120%;
+
+	strong { font-weight: normal; color: $body-lighten; }
+}
+
+/*------ General block ------*/
+@include breakpoint($change-for-medium) {
+	.inside {
+		#site-logo {
+			max-width: 178px;
+		}
+		#site-header {
+			@include rem('padding-bottom', 20px);
+			@include rem('margin-bottom', 60px);
+			background: rgba($block-color-2, 0.4);
+			border-bottom: 1px solid $block-color-2;
+		}
+	}
+}
+
+/*------ Content sliders ------*/
+
+
+/*------ Tabs ------*/
+.tabs {
+	a { 
+		color: $body-font-color; 
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+			color: $primary-color;
+		} 
+	}
+
+	.tab-link {
+		font-family: $secondary-font;
+
+		a {
+			padding: $standard-padding;
+			color: $body-lighten;
+			&:hover { color: $body-font-color; text-decoration: none; }
+		}
+	}
+
+	.tab-panel {
+		background: #fff;
+
+		li {
+			margin: 0;
+			padding: $standard-padding $standard-padding $standard-padding 30px;
+			list-style: none;
+
+			&:nth-child(even) { background: lighten($block-color-2, 2%); }
+			@include pseudo-numbered-list(10);
+			&:before {
+				left: $standard-padding;
+				font-family: $secondary-font;
+			}
+		}
+	}
+	
+	.btn.block {
+		@include rem('margin-top', $standard-spacing);
+	}
+}
+
+/*---- Pages ----*/
+.page {
+	.title {
+		@include rem('padding-bottom', $small-padding);
+		@include rem('margin-bottom', $section-spacing);
+		border-bottom: 1px dotted;
+	}
+}
+
+/*------ Articles ------*/
+
+/* Homepage articles */
+.category-title {
+	@include inline-block;
+	margin: 0;
+	@include rem('padding', 1px 8px 2px);
+	font-size: em(16px);
+	font-family: $secondary-font;
+	font-weight: normal;
+	color: #fff;
+	background: $primary-color;
+
+	a { color: #fff; }
+
+	&.abk { background: $abk-colour; }
+	&.advertorial { background: #000; }
+}
+
+.latest-articles, .related-article {
+
+	> li {
+		@include rem('margin-bottom', $standard-spacing);
+	}
+
+	.article-title {
+		font-size: em(18px);
+	}
+	.article-copy {
+		font-size: em(14px);
+		line-height: 1.4;
+	}
+}
+
+.article-meta {
+	font-family: $secondary-font;
+	text-transform: uppercase;
+	font-size: em(12px);
+
+	a { 
+		color: $body-font-color; text-decoration: none;
+		&:hover { text-decoration: underline; color: $primary-color; }
+	}
+}
+
+.article-tags {
+	> li {
+		float: left;
+		@include rem('margin-right', 5px);
+	}
+	a {
+		float: left;
+		@include rem('padding', 1px 5px);
+		font-size: em(12px);
+		font-family: $tertiary-font;
+		color: #000;
+		text-decoration: none;
+		background: $block-color-2;
+
+		&:hover {
+			color: #fff;
+			background: $primary-color;
+		}
+	}
+}
+
+.article-header {
+	@include rem('margin-bottom', $large-spacing);
+}
+
+/* Sponsored tag */
+.sponsored-tag {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	@include rem('padding', 3px 5px);
+	margin: 0;
+	font-size: em(11px);
+	font-style: italic;
+	color: #fff;
+	background: rgba(0,0,0,0.3);
+}
+
+/* Single article typography */
+.single-article {
+	padding: 0 15px;
+	.page-title, .category-title, .article-meta {
+		
+	}
+}
+
+.single-article-content {
+	font-size: em(18px);
+	line-height: 1.5;
+
+	@include breakpoint($change-for-medium) {
+		@include rem('margin', 0 15px 0 40px);
+	}
+
+	p {
+		@include rem(margin, 15px 0);
+	}
+
+	> p:first-child {
+		@include rem(padding-left, $large-padding);
+		@include rem(margin, 0 $large-spacing 40px -40px);
+		font-family: $quaternary-font;
+		@include rem(font-size, 21px);
+		color: $body-lighten;
+		border-left: 2px solid $primary-color;
+
+		strong, b { font-weight: normal; color: $primary-color; }
+	}
+
+	.gallery {
+		@include breakpoint($change-for-medium) {
+			@include rem('margin', 0 -15px 0 -40px);
+		}
+	}
+}
+
+.single-format-gallery {
+	.single-article-content {
+		margin: 0;
+
+		.gallery {
+			margin: 0;
+		}
+	}
+}
+
+/* ABK article banner */
+.abk-info-banner, .post-info-banner {
+	font-family: $secondary-font;
+
+	.abk-logo {
+		@include rem('max-width', 120px);
+		margin: 0;
+	}
+
+	.abk-info, .post-info {
+		@include rem('padding', $standard-padding);
+		@include rem('margin-bottom', $large-spacing);
+		border-bottom: 1px dotted $block-color-1;
+		background: rgba($block-color-2, 0.4);
+	}
+
+	.abk-info {
+		a, a:visited { 
+			color: $abk-colour;
+			&:after { border-left-color: $abk-colour; } 
+			&:hover { 
+				color: darken($abk-colour, 7%);
+				&:after { border-left-color: darken($abk-colour, 7%); } 
+			}
+		}
+	}
+
+	.abk-cover {
+		float: left;
+		@include rem('margin-right', $standard-spacing);
+		@include rem('max-width', 60px);
+	}
+
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+}
+
+/*------ Header ------*/
+#site-header {
+	background: $block-color-1;
+
+	@include breakpoint($change-for-medium) { background: none; }
+}
+
+.menu-primary-wrapper {
+	background: $block-color-1;
+}
+
+.menu-secondary-wrapper {
+	background: $block-color-2;	
+}
+
+/*------ Widget areas ------*/
+.after-content, #sidebar, .pre-footer {
+	font-size: em(14px);
+}
+
+.after-content, .pre-footer, .after-content {
+	.section-heading { @include rem('margin-bottom', $large-spacing); font-weight: normal; }
+}
+
+.after-content {
+	border-top: 1px solid #c0c0c0;
+	@include rem('padding', $section-padding 0 0);
+
+	#mc4wp-form-1 {
+		@include rem('padding', $standard-padding);
+		background: $block-color-2;
+		border-top: 2px solid darken($block-color-2, 10%);
+	}
+}
+
+.pre-footer {
+	@include rem('padding', $section-padding 0);
+	background: $block-color-2;
+}
+
+#sister-sites {
+	@include rem('padding-top', $section-padding);
+	border-top: 1px solid #c0c0c0;
+
+	.list-title { display: none; }
+
+	p { @extend %smaller-text; }
+}
+
+.event {
+	.event-link {
+		color: $body-font-color; 
+		text-decoration: none;
+		
+		&:hover {
+			color: $primary-color;
+			text-decoration: underline;
+		} 
+	}
+	.event-title {
+		@include rem('margin', $standard-spacing);
+		font-size: em(16px);
+	}
+	.event-date {
+		@include rem('margin', $standard-spacing);
+		display: block;
+		font-family: $secondary-font;
+		color: $primary-color;
+		text-transform: uppercase;
+		font-size: em(10px);
+	}
+}
+
+/* Style updates for inside pages */
+.inside #sister-sites { border: none; padding: 0; }
+.single-format-standard .after-content { border: none; padding: 0; }
+
+/*------ Footer ------*/
+#site-footer {
+	font-family: $secondary-font;
+	color: #fff;
+	background: $block-color-1;
+
+	.menu-name {
+		@include rem('margin-bottom', $large-spacing);
+		font-family: $secondary-font;
+	}
+}
+
+#footer-links {
+	a {
+		font-size: em(14px);
+		color: #fff;
+		text-decoration: none;
+
+		&:hover { text-decoration: underline; }
+	}
+}
+
+/*---- Category page ----*/
+.category-list {
+	@extend .cf;
+	font-family: $secondary-font;
+	text-transform: uppercase;
+	font-size: em(12px);
+	line-height: 1;
+
+	> li {
+		@include rem('padding', 0 $small-padding);
+		float: left;
+		border-left: 1px solid;
+		&:first-child { padding-left: 0; border: none; }
+	}
+}
+
+/*---- Pagination ----*/
+%pagination-btn {
+	@include inline-block;
+	@include rem('padding', 2px 8px);
+	color: $body-lighten;
+	text-decoration: none;
+	border: 1px solid lighten($body-font-color, 70%);
+}
+
+.pagination {
+	font-family: $secondary-font;
+
+	a, .current { 	
+		@extend %pagination-btn;
+	}
+
+	.current { color: $primary-color; border-color: $primary-color; }
+	a:hover { color: $primary-color; border-color: $primary-color; }
+}
+
+/*---- Author bio ----*/
+.author-bio {
+	font-family: $tertiary-font;
+
+	h5 { margin: 0; font-family: $tertiary-font; font-size: em(16px); }
+	p { font-size: em(13px); color: $body-lighten; }
+}
+
+/*------ Misc classes ------*/
+.title-invert {
+	@include rem('margin', 0 0 $standard-spacing);
+	@include rem('padding', $small-padding);
+	color: #fff;
+	font-size: em(16px);
+	background: $primary-color;
+}
+
+.section-heading {
+	font-family: $secondary-font;
+	font-weight: normal;
+}
+
+/* Give Mailchimp heading correct styles */
+#mc4wp-form-1 {
+	h4 { @extend .section-heading; }
+}
+
+.comment-count {
+	font-family: $secondary-font;
+}
+
+.read-more-link {
+	position: relative;
+	text-decoration: none;
+	white-space: nowrap;
+
+	&:after {
+		@include pseudo-block('', block, absolute, 1);
+		@include arrow(4px, lighten($primary-color, 15%), right);
+		top: 6px;
+		right: -9px;
+	}
+}
+
+.close {
+	color: $block-color-1;
+	text-decoration: none;
+
+	&:hover { color: $primary-color; }
+}
+
+.rss-link {
+	font-size: em(21px);
+	color: $body-font-color;
+	&:hover { color: $primary-color; }
+}
+
+.post-date {
+	font-style: italic;
+	font-size: em(12px);
+	color: $body-lighten;
+}
+
+/*------ Misc styles ------*/
+::selection {background: $primary-color; color: #fff;}
+::-moz-selection {background: $primary-color; color: #fff;}
+
+::-webkit-input-placeholder {
+	font-family: $secondary-font;
+	color: $placeholder-color;
+	opacity: 1;
+}
+:-moz-placeholder {
+	font-family: $secondary-font;
+	color: $placeholder-color;
+	opacity: 1;
+}
+::-moz-placeholder {
+	font-family: $secondary-font;
+	color: $placeholder-color;
+	opacity: 1;
+}
+:-ms-input-placeholder {
+	font-family: $secondary-font;
+	color: $placeholder-color;
+	opacity: 1;
+}
+
+/*---- African Banker ----*/
+.abk {
+	.img-placeholder {
+		position: relative;
+
+		&:before {
+			@include pseudo-block('', block, absolute, 1);
+			width: 35px; height: 34px;
+			background: $primary-color url(lib/img/icons/logo-sprite.png) no-repeat -70px -35px;
+			background-size: 105px;
+			bottom: 0;
+			right: 0;
+
+			@media #{$change-for-retina} { 
+				background-position: 0 -36px;
+				background-size: 53px; 
+			}
+		}
+	}
+
+	blockquote { border-color: $abk-colour; }
+
+	.single-article-content p:first-child { border-color: $abk-colour; }
+
+
+}
+
+.abk-category-title { background: $abk-colour; }

@@ -1,0 +1,52 @@
+/*
+	Stylesheet: Colorbox
+	Description: http://www.jacklmoore.com/colorbox/
+*/
+
+/*
+    Colorbox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxWrapper {max-width:none;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto; -webkit-overflow-scrolling: touch;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none; -ms-interpolation-mode:bicubic;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of Colorbox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:#fff;}
+#colorbox{outline:0;}
+    #cboxContent{margin:40px 0; overflow:visible; background:#fff;}
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #eee;}
+        #cboxLoadedContent{background:#fff; padding:0;}
+        #cboxLoadingGraphic{background:url(lib/img/icons/loading.gif) no-repeat center center;}
+        #cboxLoadingOverlay{background:#fff;}
+        #cboxTitle{position:absolute; top:-22px; left:0; color:#000; visibility: hidden;}
+        #cboxCurrent{position:absolute; top:-22px; right:205px; text-indent:-9999px; visibility: hidden;}
+
+        /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+        #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; text-indent:-9999px; width:32px; height:32px; position:absolute; background:none no-repeat center center;}
+        
+        /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+        #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
+        
+        /* hover indication */
+        #cboxPrevious:hover, #cboxNext:hover, #cboxSlideshow:hover, #cboxClose:hover {opacity: 0.5; transition: opacity 0.2s; outline:0;}
+
+      	#cboxPrevious{bottom: -35px; left: 50%; margin-left: -35px; background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABCElEQVRYR+2WWQvCMBCE7T/2wAvvExXP3+qDjzoDLYSgkj1oXxIoTULS+Xa6m7ZoNdyKhvVbGSA74O3AFEn9wnVJTW5PgBNE+6XwCvdlCoQXwARi20DwiP6oLoAwcmomR8/FVgcY6SCIdI3+IiXyao0FIBbf4KFzibjFARdxLUAszuSbSSPXvoIDNg4DsR36rH11k+QA6zpMsD3GLD9TkwDE0auSLqaVAHBv7MIVcz2LBVKAbxA3THa1EBoAVwgtACF45IYHzx3jjtQJC4ALhBXgFwRz4p3ihgcAdc5RNbBkx3UCUItfwupIbqP/qBuAevwVe5bnRYq++X8gSeTfIq8cUINkgOzAB1FpKSG7oDUOAAAAAElFTkSuQmCC);}
+        #cboxNext{bottom: -35px; left: 50%; margin-left: 3px; background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA/klEQVRYR+2WWQuDQAyE9akv/bEt9KKHtRf0ov3LnYFaFunDJhnwZQNBBeN8mY2rdTVw1APrVwWgOGB1YIahHSEvquG1ALQQ3X+FHzguFBAWgFtPdKtwwgLAhg/IJun8jvNlxAkrALWOyJ0KwgMghfACEOKE5Bx04VqOCACFz8hNAsFBXVlmIgrwD4KD2uZCKACoxY1pnYhmQ6gA+vOQvRQKgBc6n3q6Z00UICQeBXjjARNv512d1wGJuMcBAtP2tHNuzd1XMvft+91ncUAubnXgioL0y/fE9dzccq/A4gBt59ozQranDBYA1rXIMZK/ZpKwAkhEIw4UgOKA3IEPaTEmIZBAxa4AAAAASUVORK5CYII=);}
+        #cboxClose{top:-35px; right: 0; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACTUlEQVRYR+2Wu0tcQRTGXZNaEzAiidEVX0QT7VSwUSMhhaWIf0CiYiB/i6CEoLZWYmeh4KuwEe0Sg5qHb2O00PQR/b5wrizDmXvu7Bbb7MDH7M6cOec3M2fmTqoozyWV5/hFBQDfChRja8agTqgf2s9yq15h3Cy0Dg1DN64fDeAhjGagATH+g/o1tB0I0Qb7ReiRjJtDPQj9y/SjAUzA4IMT7AT/e6DvCSFaYLcMlTn24/j/0QL4AYNaJdCZrMSOAdGK/iUlOIftQY0WQD0MVqFnSqArtL2BtjwQ7bLspUr/Adq6Idb3xZeEaYFg7ZZrgdh0OjrwfwHSgjOJGfzQdRZ3D1QLRI0H4i3aN6Qvq+Aca11EcRB/MZ4Q9MGZlyigv2TmR0rf/yYLgDbMiRWoUnHCnGB5rPQdS/CfvuBJAWhXJRDa6dD88yTx2BIitiRZgcjBc4GoM3wyOBOOd4dZQgDojAnJ7Uh7PHuz3UcSCuC74SL/l/jBa/uLOXUxCAFgcN5wTwznQRBJAZIGD16JJAAvZN8rlJmfS5vW91uScTduxSyAuJmfwnGXOF9DrX07zO2IA7CC86hFn+e4D1gshA8gJHi0wllBaAB8RvExoWU7lz1z5u72BkNoAHx6NSmJcyFn/KtxDF/KBMoVu29oa85s1wCmYPDOGcx95N1uBY+GEYI3pruK02h7bwEQ6hM0IoZ8inHZ+ZwKKQ0w5svqqQz6jHoUurUA2P8AmoR6oT4o8dXqEDKf5iHeoENQomd5yCxztrUuopwDWA4KAHc+c3IhjrTXEgAAAABJRU5ErkJggg==);}
+        
+        #cboxContent .cboxPhoto {border-radius: 4px;}

@@ -1,0 +1,61 @@
+/*
+	Stylesheet: Tables
+	Description: Table styling
+*/
+
+/*---- Subscription page ----*/
+.subscribe-options {
+
+	td, th {
+
+		@include breakpoint($just-for-small) {
+			display: block;
+		}
+
+		@include breakpoint($change-for-medium) {
+			@include equal-span(3, $breakpoint: 'medium');
+		}
+	}
+
+	th {
+		vertical-align: top;
+		font-weight: normal;
+	}
+
+	tbody {
+		font-size: em(12px);
+
+		tr {
+			td:first-child {
+				@include rem('padding', $large-padding $standard-padding);
+				font-family: $secondary-font;
+				text-transform: uppercase;
+			}
+
+			&:nth-child(odd) {
+				background: $block-color-2;
+			}
+		}
+
+		
+		[data-icon] {
+			color: 	#88c425;
+
+			@include breakpoint($change-for-medium) {
+				position: relative;
+				top: 10px;
+				display: block;
+				font-size: em(24px);
+				text-align: center;
+				text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+			}
+		}
+	}
+
+	.table-info, + .table-info {
+		color: $primary-color;
+	}
+
+}
+
+.sub-price { color: $primary-color; }

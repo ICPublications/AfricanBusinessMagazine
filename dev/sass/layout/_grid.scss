@@ -1,0 +1,220 @@
+// 
+// _grid.scss - based on http://www.palantir.net/blog/responsive-design-s-dirty-little-secret#sthash.XpfxTBrY.dpuf
+//
+
+// 
+// Settings
+// ==================================================================================================================================
+
+$column-count: 12;
+$gutter-width: 3%;
+
+$grid-width-small: 100%;
+$grid-width-medium: 96%;
+$grid-width-large: 98%;
+
+// For arrow header width extension outside of main content
+$grid-width-medium-extended: 92%;
+$grid-width-large-extended: 82%;
+
+// 
+// Mixins & functions
+// ==================================================================================================================================
+
+// Mixin for equal width stacked columns
+@mixin equal-span($col-span, $breakpoint) {
+
+	
+	// Setup column classes
+
+		@if $breakpoint == 'small' { @extend %small-col-setup }
+		@if $breakpoint == 'medium' { @extend %col-setup; }		
+
+
+	// Work out column width
+
+		// How many gutters per row?
+		$gutter-num: ($column-count / $col-span) - 1;
+
+		// So how much space do the gutters take up?
+		$total-gutter-width: $gutter-width * $gutter-num;
+
+		// Therefore how wide is each column span?
+		$single-col-width: (100% - $total-gutter-width) / ($column-count / $col-span);
+		width: $single-col-width;
+
+	// Set spacing for columns
+
+		// Set row counter
+		$j: 1;
+
+		@for $i from 1 through ($column-count / $col-span) {
+
+			&:nth-of-type(#{$column-count / $col-span}n + #{$i}) {
+
+				// Add first / last column class
+				@if $j == 1 {
+					@if $breakpoint == 'small' { @extend %small-first-col; }
+					@if $breakpoint == 'medium' { @extend %first-col; }
+				}
+
+				@if $j == ($column-count / $col-span) {
+					@if $breakpoint == 'small' { @extend %small-last-col; }
+					@if $breakpoint == 'medium' { @extend %last-col; }
+					$j: 1;
+				}
+
+				margin-left: ($single-col-width + $gutter-width) * ($i - 1);
+
+			}
+
+			$j: $j + 1;	
+
+		}
+
+		// Again for IE8 browser polyfill classes
+		// Set row counter
+		$k: 1;
+
+		@for $i from 1 through ($column-count / $col-span) {
+
+			&.pf-#{$col-span}-#{$k} { // Polyfill classes for IE8
+
+				// Add first / last column class
+				@if $k == 1 {
+					clear: left;
+				}
+
+				@if $k == ($column-count / $col-span) {
+					float: right;
+					margin-right: 0;
+					$k: 1;
+				}
+
+				margin-left: ($single-col-width + $gutter-width) * ($i - 1);
+
+			}
+
+			$k: $k + 1;	
+
+		}	
+}
+
+// Mixin for reseting columns before updating col span at breakpoints
+@mixin col-reset($col-span) {
+
+	// Set row counter
+		$j: 1;
+
+		@for $i from 1 through ($column-count / $col-span) {
+
+			&:nth-of-type(#{$column-count / $col-span}n + #{$i}) {
+
+				@extend %col-setup;
+
+				@if $j == 1 { clear: none; }
+
+
+				@if $j == ($column-count / $col-span) { $j: 1; }
+
+			}
+
+			$j: $j + 1;	
+
+		}
+
+}
+
+// Mixin for positioned columns
+@mixin position-span($col-span, $position, $breakpoint) {
+
+	// Setup column class
+	@if $breakpoint == 'small' { @extend %small-col-setup; }
+	@if $breakpoint == 'medium' { @extend %col-setup; }
+
+	// If is first column in row
+	@if $position == 1 {
+		@if $breakpoint == 'small' { @extend %small-first-col; }
+		@if $breakpoint == 'medium' { @extend %first-col; }
+	}
+
+	// Work out column width
+
+		// How many gutters per row?
+		$gutter-num: ($column-count / $col-span) - 1;
+
+		// So how much space do the gutters take up?
+		$total-gutter-width: $gutter-width * $gutter-num;
+
+		// Therefore how wide is the column span?
+		$single-col-width: (100% - $total-gutter-width) / ($column-count / $col-span);
+		width: $single-col-width;
+
+
+	// Work out location
+
+		// How wide is an individual column?
+		$individual-col-width: (100% - ($gutter-width * ($column-count - 1))) / $column-count;
+
+		margin-left: ($individual-col-width + $gutter-width) * ($position - 1); 	
+
+}
+
+// 
+// Styling
+// ==================================================================================================================================
+
+
+// Specify box-sizing
+
+* {
+  @include box-sizing('border-box');
+}
+
+// Column specific classes
+
+%small-col-setup {
+	float: left;
+	margin-left: 0;
+  	margin-right: -100%;
+}
+
+%small-first-col {
+	clear: left;
+}
+
+%small-last-col {
+	float: right;
+	margin-right: 0;
+}
+
+%col-setup {
+	@include breakpoint($change-for-medium) {
+		float: left;
+		margin-left: 0;
+	  	margin-right: -100%;
+	 }
+}
+
+%first-col {
+	@include breakpoint($change-for-medium) {
+		clear: left;
+	}	
+}
+
+%last-col {
+	@include breakpoint($change-for-medium) {
+		float: right;
+		margin-right: 0;
+	}	
+}
+
+%new-row {
+	clear: both;
+}
+
+// IE8 polyfill fixes
+[class*="pf-"], %pf-setup {
+	float: left;
+	margin-right: -100%;
+}

@@ -1,0 +1,37 @@
+/*
+	Stylesheet: Modules
+	Description: Reusable, modular parts of the design
+*/
+
+/*---- Navigation ----*/
+@import "modules/navigation";
+
+/*---- Buttons ----*/
+@import "modules/buttons";
+
+/*---- Lists ----*/
+@import "modules/lists";
+
+/*---- Features ----*/
+@import "modules/features";
+
+/*---- Content sliders ----*/
+@import "modules/content-slider";
+
+/*---- Galleries ----*/
+@import "modules/galleries";
+
+/*---- Video players ----*/
+@import "modules/video-player.scss";
+
+/*---- Audio players ----*/
+@import "modules/audio-player.scss";
+
+/*---- Tables ----*/
+@import "modules/tables";
+
+/*---- Footer ----*/
+@import "modules/footer";
+
+/*---- Advertising ----*/
+@import "modules/advertising";

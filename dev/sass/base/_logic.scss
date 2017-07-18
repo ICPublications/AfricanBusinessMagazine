@@ -1,0 +1,130 @@
+/*
+	Stylesheet: Logic
+	Description: Base logic (variables, mixins and functions)
+*/
+
+$base-font-size: $document-font-size;
+
+/*-- Convert PX to EM (eg. em(14px)) --*/
+@function em($target, $context: $base-font-size) {
+	@if $target == 0 { @return 0 }
+	@return $target / $context + 0em;
+}
+
+
+/*-- Convert PX to % (eg. pc(14px)) --*/
+@function pc($target, $context: $base-font-size) {
+	@if $target == 0 { @return 0 }
+	@return ($target / $context) * 100%;
+}
+
+
+/*-- Rem calculation function - https://github.com/bitmanic/rem --*/
+
+// Baseline, measured in pixels
+// The value should be the same as the font-size value for the html element
+// If the html element's font-size is set to 62.5% (of the browser's default font-size of 16px),
+// then the variable below would be 10px.
+$baseline-px: $document-font-size;
+
+@mixin rem($property, $px-values) {
+  // Convert the baseline into rems
+  $baseline-rem: $baseline-px / 1rem * 1;
+  // Print the first line in pixel values
+  #{$property}: $px-values;
+  // If there is only one (numeric) value, return the property/value line for it.
+  @if type-of($px-values) == "number" {
+    #{$property}: $px-values / $baseline-rem; }
+  @else {
+    // Create an empty list that we can dump values into
+    $rem-values: ();
+    @each $value in $px-values {
+      // If the value is zero or not a number, return it
+      @if $value == 0 or type-of( $value ) != "number" {
+        $rem-values: append($rem-values, $value); }
+      @else {
+        $rem-values: append($rem-values, $value / $baseline-rem); } }
+    // Return the property and its list of converted values
+    #{$property}: $rem-values; } 
+}
+
+/*-- Create pseudo blocks --*/
+@mixin pseudo-block($content, $display, $position, $zindex) {
+  content: $content;
+  display: $display;
+  position: $position;
+  z-index: $zindex;
+}
+
+/*-- Create arrows --*/
+@mixin arrow($size, $color, $direction) {
+  width: 0; 
+  height: 0;
+
+  @if $direction == right {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  }
+
+  @if $direction == left {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+  }
+
+  @if $direction == up {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+  }
+
+  @if $direction == down {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+  }
+}
+
+/*-- Generate ol list items with pseudo elements for styling --*/
+@mixin pseudo-numbered-list($num) {
+  &:before {
+    @include pseudo-block('', block, absolute, 1);
+  }
+
+  @for $i from 1 through $num {
+		&:nth-child(#{$i}n) {
+			&:before { content: '#{$i}';}
+		}
+  }
+}
+
+/*-- Generate Intrinsic Ratio ----*/
+@mixin intrinsic-ratio($x, $y) {
+  padding-bottom: percentage($y/$x);
+}
+
+/*-- Flexbox ----*/
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;  
+  -moz-box-ordinal-group: $val;     
+  -ms-flex-order: $val;     
+  -webkit-order: $val;  
+  order: $val;
+}

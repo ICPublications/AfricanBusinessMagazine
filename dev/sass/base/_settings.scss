@@ -1,0 +1,138 @@
+/*
+	Stylesheet: Settings
+	Description: General settings
+*/
+
+/*---- SASS Imports ----*/
+@import "compass/css3";
+@import "compass/support";
+@import "breakpoint";
+
+/*-- Compass --*/
+
+$default-border-radius: 4px;
+$experimental-support-for-svg: true;
+
+
+/*-- Breakpoints (https://github.com/Team-Sass/Breakpoint) --*/
+
+$breakpoint-to-ems: true;
+
+$just-for-small: 0px 767px;
+$change-for-medium: 768px, 'no-query' true;
+$change-for-large: 1020px, 'no-query' true;
+$change-for-super-large: 1400px, 'no-query' true;
+$change-for-ipad-landscape: "only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape)";
+$change-for-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
+
+
+/*---- Color scheme ----*/
+
+/* General */
+$primary-color: rgb(192,4,24); // ABM Red - darker original hex value: #a61e24
+$secondary-color: #000;
+$abk-colour: #009ac0;
+
+/* Typography */
+$body-font-color: #222; // Dark grey
+$header-font-color: $body-font-color;
+$body-lighten: lighten($body-font-color, 30%);
+
+/* Backgrounds */
+$body-bg-color: #fff; // White
+$html-bg-color: #fff; // White
+$block-color-1: #222; // Black: nav, footer and header backgrounds
+$block-color-2: #f0f2f5; // Light grey: secondary nav background
+
+/* Forms */
+$input-border-color: #bebebe; // Light Grey
+$placeholder-color: #999; // Grey
+$error-color: red;
+
+/* Navigation */
+$primary-nav-color: #fff; // White
+$secondary-nav-color: $body-font-color; // Dark grey
+
+/*---- Spacing ----*/
+
+$small-spacing: 5px;
+$standard-spacing: 10px;
+$large-spacing: 30px;
+$small-section-spacing: 20px;
+$section-spacing: 40px;
+$large-section-spacing: 60px;
+
+$small-padding: 5px;
+$standard-padding: 10px;
+$large-padding: 20px;
+$section-padding: 40px;
+
+
+/*---- Typography ----*/
+
+/* Set on html for document root type scaling */
+$small-document-font-size: 14px; // Mobile
+$document-font-size: 16px; // Desktop
+// $primary-font: "adobe-caslon-pro", serif; // Typekit
+$primary-font: "georgia", serif; 
+$secondary-font: "futura-pt", sans-serif; // Typekit
+$tertiary-font: sans-serif;
+$quaternary-font: "news-gothic-std", sans-serif;
+$body-font: $primary-font;
+$line-height: 1.5;
+$paragraph-margin: $standard-spacing 0;
+
+/* Navigation */
+$navigation-font: $secondary-font;
+$icon-font: 'icp-icons';
+
+/* Used with placeholder %smaller-text */
+$smaller-text-font-size: 14px;
+$smaller-text-line-height: 1.6;
+
+/* Headings */
+$header-font: $primary-font;
+// $header-font-weight: 700; // Typekit
+$header-font-weight: normal;
+$header-line-height: 1.2;
+
+$h1-font-size: 33px;
+$h2-font-size: 24px;
+$h3-font-size: 21px;
+$h4-font-size: 18px;
+$h5-font-size: 16px;
+$h6-font-size: $document-font-size;
+
+$h1-margin: $standard-spacing 0 $small-spacing;
+$h2-margin: $standard-spacing 0 $small-spacing;
+$h3-margin: $standard-spacing 0 $small-spacing;
+$h4-margin: $standard-spacing 0 $small-spacing;
+$h5-margin: $standard-spacing 0 $small-spacing;
+$h6-margin: $standard-spacing 0 $small-spacing;
+
+/*---- Buttons ----*/
+
+$button-font: $secondary-font;
+$button-vertical-padding: 7px;
+$button-horizontal-padding: 10px;
+
+/*---- Forms ----*/
+$input-padding: 8px;
+
+/*-- @fontface imports fonts --*/
+// ex.1 $fonts: (font-name) or ex.2 $fonts: (font-name1, font-name2, font-name3);
+
+$fonts: (icp-icons);
+
+@if ($fonts != null) {
+	@each $font in $fonts {
+		@include font-face( $font,
+			font-files(
+				'#{$font}/#{$font}.woff',
+				'#{$font}/#{$font}.ttf',
+				'#{$font}/#{$font}.svg', svg
+			),
+			'#{$font}/#{$font}.eot'
+			)
+	}
+}

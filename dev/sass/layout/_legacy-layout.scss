@@ -1,0 +1,31 @@
+/*
+	Stylesheet: Legacy layout
+	Description: IE8 grid layout fixes
+*/
+
+/*---- IE8 grid fixes for position-span() mixin ----*/
+
+.ie8 {
+	#content, #sidebar {
+		@extend %pf-setup;
+	}
+	.after-content {
+		#classifieds, .featured-events, .mpu, #latest-issues, #mc4wp-form-1 {
+			@extend %pf-setup;		
+		}
+		#latest-issues {
+			clear: left;
+		}
+		#mc4wp-form-1 {
+			clear: right;
+		}
+	}
+
+	.thumb-list {
+		clear: both;
+		
+		.article-image, .article-content {
+			@extend %pf-setup;
+		}
+	}
+}

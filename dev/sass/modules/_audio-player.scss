@@ -1,0 +1,16 @@
+/*
+	Stylesheet: Audio Players
+	Description: In-page audio player styling
+*/
+
+/*---- SoundCloud Player ----*/
+@include breakpoint($change-for-medium) {
+	.audio-container {
+		&.align-left {
+			@include rem('margin', $standard-spacing $small-section-spacing $standard-spacing 0);
+		}
+		&.align-right {
+			@include rem('margin', $standard-spacing 0 $standard-spacing $small-section-spacing);
+		}
+	}
+}

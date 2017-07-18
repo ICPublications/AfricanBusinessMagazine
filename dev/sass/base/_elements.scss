@@ -1,0 +1,211 @@
+/*
+	Stylesheet: Element Styles
+	Description: Default element styling
+*/
+
+/*---- General ----*/
+
+html {
+	font-size: $small-document-font-size;
+	overflow-y: scroll;
+	background: $html-bg-color;
+
+	@include breakpoint($change-for-medium) {
+		font-size: $document-font-size;
+	}
+}
+
+body {
+	position: relative;
+	line-height: $line-height;
+	font-family: $body-font;
+	color: $body-font-color;
+}
+
+img {
+	max-width: 100%;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    @include rem('margin', $standard-spacing 0);
+    padding: 0;
+}
+
+img, video {
+    vertical-align: middle;
+}
+
+
+/*---- Typography ----*/
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $header-font;
+	font-weight: $header-font-weight;
+	line-height: $header-line-height;
+
+	a {
+		color: $header-font-color;
+		text-decoration: none;
+
+		&:hover { text-decoration: underline; }
+	}
+}
+
+h1 { font-size: em($h1-font-size); @include rem('margin', $h1-margin); }
+h2 { font-size: em($h2-font-size); @include rem('margin', $h2-margin); }
+h3 { font-size: em($h3-font-size); @include rem('margin', $h3-margin); }
+h4 { font-size: em($h4-font-size); @include rem('margin', $h4-margin); }
+h5 { font-size: em($h5-font-size); @include rem('margin', $h5-margin); }
+h6 { font-size: em($h6-font-size); @include rem('margin', $h6-margin); }
+
+p {
+	@include rem('margin', $paragraph-margin);
+	
+	text-rendering: optimizeLegibility;
+	
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+ul, ol {
+	margin: 0;
+	padding: 0;
+	color: #3d4144;
+}
+
+li {
+	@include rem('margin-bottom', $small-spacing);
+	
+	list-style: none;
+}
+
+ol {
+	@include rem('padding-left', $large-padding);
+	
+	> li {
+		list-style: decimal;
+	}
+}
+
+ul.disc, p ul {
+	> li {
+		list-style: disc;
+	}
+}
+
+small {
+	font-size: 70%;
+}
+
+a {
+	color: $primary-color;
+	
+	-moz-transition: all 0.1s ease-in;
+	-webkit-transition: all 0.1s ease-in;
+	transition: all 0.1s ease-in;
+}
+
+// Overide relative positioning for absolute positioned active elements
+%static-click:active {
+	position: absolute;
+}
+
+figcaption {
+	@include rem('padding-top', $small-padding);
+	
+	font-size: em(12px);
+}
+
+/*---- Icon Font ----*/
+
+%icon-setup {
+	font-family: $icon-font;
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1.2;
+	-webkit-font-smoothing: antialiased;
+}
+
+[data-icon]:before {
+	@extend %icon-setup;
+
+	@include rem('margin-right', 3px);
+	position: relative;
+	top: 2px;
+}
+
+.icon-alone {
+  display: inline-block; /* Fix for clickability issue in WebKit */
+}
+.screen-reader-text {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+
+/*-- Tables --*/
+table {
+	width: 100%;
+}
+
+th, td {
+	@include rem('padding', $small-padding);
+	text-align: left;
+}
+
+/*-- Forms --*/
+form {
+	width: 100%;
+}
+
+fieldset {
+	@include rem('margin',0 0 $standard-spacing);
+	padding: 0;
+	border: none;
+}
+
+legend {
+}
+
+label {
+	@include inline-block;
+	@include rem('margin-right', 5px);
+}
+
+option {
+}
+
+input[type="checkbox"], input[type="radio"] {
+	@include rem('margin-right', 3px);
+	position: relative;
+	top: -1px;
+}
+
+textarea {
+	@include rem('min-height', 190px);
+  resize: vertical;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], input[type="search"], textarea, select {
+	@include rem('padding', $input-padding);
+	@include rem('margin-bottom', $standard-spacing);
+	width: 100%;
+	border: 1px solid $input-border-color;
+}
+
+input[type="file"] {
+	width: 100%;
+}
+
+select {
+	border: 1px solid $input-border-color;
+}

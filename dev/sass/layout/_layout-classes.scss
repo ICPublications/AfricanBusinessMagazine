@@ -1,0 +1,40 @@
+/*
+	Stylesheet: Layout classes
+	Description: Classes for specifying module layout behaviour
+*/
+
+/*---- Grid spans ----*/
+@include breakpoint($change-for-medium) {
+	.l-8-1 {
+		@include position-span(8, 1, $breakpoint: 'medium');
+	}
+	.l-4-9 {
+		@include position-span(4, 9, $breakpoint: 'medium');
+	}
+	.l-9-1 {
+		@include position-span(9, 1, $breakpoint: 'medium');
+	}
+	.l-3-10 {
+		@include position-span(3, 10, $breakpoint: 'medium');
+	}
+}
+
+/*---- Spacing ----*/
+.l-module {
+	margin-bottom: $section-spacing;
+}
+
+.l-small-module {
+	margin-bottom: $small-section-spacing;
+}
+
+.l-large-module {
+	margin-bottom: $large-section-spacing;
+}
+
+/*---- Positioning ----*/
+.l-top-right {
+	position: absolute;
+	top: 0;
+	right: 0;
+}

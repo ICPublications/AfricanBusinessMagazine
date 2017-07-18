@@ -1,0 +1,20 @@
+/*
+	Stylesheet: Mailchimp
+	Description: Mailchimp plugin styles
+*/
+
+.mc4wp-form {
+	@extend .cf;
+
+	p { @extend %smaller-text; }
+
+	input[type=email] {
+		@include position-span(9, 1, 'small');
+	}
+	input[type=submit] {
+		@include rem('height', 36px);
+		@extend .btn;
+		@extend .secondary;
+		@include position-span(3, 10, 'small');
+	}
+}

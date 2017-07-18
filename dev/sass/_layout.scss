@@ -1,0 +1,266 @@
+/*
+	Stylesheet: Layout
+	Description: Layout specific styling
+*/
+
+/*---- Grid System ----*/
+@import "layout/grid";
+
+
+/*---- Layout classes ----*/
+@import "layout/layout-classes";
+
+
+/*---- Grid Containers ----*/
+.container {
+	@extend .cf;
+
+	width: $grid-width-small;
+	max-width: 1020px;
+
+	@include rem('padding', 0 10px);
+
+	@include breakpoint($change-for-medium) {
+		width: $grid-width-medium;
+		padding: 0;
+		margin: auto;
+	}
+
+	@include breakpoint($change-for-large) {
+		width: $grid-width-large;
+	}
+}
+
+.large-container {
+	@extend .container;
+	padding: 0;
+}
+
+
+/*---- Primary layout ----*/
+#site-logo {
+	@include rem('max-width', 140px);
+	margin: 0;
+
+	@include breakpoint($change-for-medium) {
+		@include rem('max-width', 200px);
+	}
+
+	@include breakpoint($change-for-large) {
+		@include rem('max-width', 255px);
+	}
+}
+
+#site-header {
+	@include rem('margin-bottom', $large-spacing);
+
+	@include breakpoint($change-for-medium) {
+		.connect {
+			float: right;
+		}
+	}
+
+	@include breakpoint($change-for-large) {
+		.leaderboard { float: right; }
+	}
+}
+
+#content {
+	position: relative;
+}
+
+.ad-unit {
+	&.mobile {
+		display: block;
+	}
+	&.leaderboard, &.skyscraper, &.mpu { 
+		display: none; 
+	}
+}
+@include breakpoint($change-for-medium) {
+	.ad-unit {
+		&.mobile {
+			display: none;
+		}
+		&.leaderboard, &.skyscraper, &.mpu { 
+			display: block; 
+		}
+	}
+}
+@include breakpoint($change-for-large) {
+	.leaderboard { float: right; }
+}
+
+@include breakpoint($change-for-medium) {
+
+	.home #site-header { margin-bottom: 0; }
+
+	.menu-secondary-wrapper {
+		@include rem('margin-bottom', 30px);
+	}
+
+	#menu-secondary-container {
+		float: left;
+	}
+
+	.page {
+		#content {
+			@include rem('margin-bottom', $section-spacing);
+		}
+	}
+
+	.home {
+		#content {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.pre-footer {
+	clear: both;
+}
+
+#sister-sites { // Clear any floated columns
+	@extend %new-row;
+}
+
+
+/*---- Author bio ----*/
+.author-bio {
+	@extend .cf;
+
+	.author-img {
+		@include position-span(2, 1, $breakpoint: 'small');
+	}
+	.author-info {
+		@include position-span(10, 3, $breakpoint: 'small');
+	}
+}	
+
+
+/*---- Subscribe ----*/
+
+.subscribe-issues {
+	> li {
+		@include equal-span(6, $breakpoint: 'small');
+		@include breakpoint($change-for-medium) {
+			@include col-reset(6);
+			@include equal-span(3, $breakpoint: 'medium');
+		}
+	}
+}
+
+
+/*---- Related articles ----*/
+
+.related-articles {
+	> li {
+		@include equal-span(6, $breakpoint: 'small');
+		@include breakpoint($change-for-medium) {
+			@include col-reset(6);
+			@include equal-span(4, $breakpoint: 'medium');
+		}
+	}
+}
+
+
+/*---- After content widget area layout ----*/
+
+@include breakpoint($change-for-medium) {
+	.after-content {	
+		
+		#classifieds {
+			@include position-span(4, 1, $breakpoint: 'medium');
+		}
+
+		.featured-events {
+			@include position-span(4, 5, $breakpoint: 'medium');	
+		}
+
+		.mpu {
+			@include position-span(4, 9, $breakpoint: 'medium');
+		}
+	}
+
+	.pre-footer {
+		#latest-issues {
+			@include position-span(6, 1, $breakpoint: 'medium');
+		}
+
+		#mc4wp-form-1 { // Is there a better way of targeting the signup form?
+			@include position-span(6, 7, $breakpoint: 'medium');
+		}
+	}	
+}
+
+/*---- Category page ----*/
+.category, .tag {
+	.rss-link {
+		@include inline-block;
+		@include rem('margin-bottom', $small-spacing);
+		@include breakpoint($change-for-medium) {
+			position: absolute;
+			top: 20px;
+			right: 0;
+		}
+	}
+}
+
+/*---- Homepage articles ----*/
+
+.home {
+	.list-articles {
+		@extend .cf;
+		
+		li {
+			@include breakpoint($change-for-medium) {
+				@include equal-span(4, 'medium');
+			}
+		}
+	}
+}
+
+
+/*---- Article lists ----*/
+
+.medium-list {
+	@include breakpoint($change-for-medium) {
+		@include equal-span(6, $breakpoint: 'medium');
+	}	
+}
+.thumb-list {
+
+	.article-image {
+		@include breakpoint($change-for-medium) {
+			@include position-span(3, 1, $breakpoint: 'medium');
+		}	
+	}
+	.article-content {
+		@include breakpoint($change-for-medium) {
+			@include position-span(9, 4, $breakpoint: 'medium');
+		}		
+	}
+}
+
+
+/*---- Footer Menus ----*/
+
+#footer-links {
+	@extend .cf;
+	@include rem('margin-bottom', $section-spacing);
+	
+	.menu {
+		@include equal-span(6, $breakpoint: 'small');
+		@include rem('margin-bottom', $section-spacing);
+
+		@include breakpoint($change-for-medium) {
+			@include col-reset(6);
+			@include equal-span(2, $breakpoint: 'medium');
+		}
+	}
+}
+
+/*---- Update layout for third party components ----*/
+#mc4wp-form-1, #disqus_thread {
+	@extend .l-module;
+}

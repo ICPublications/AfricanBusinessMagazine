@@ -1,0 +1,54 @@
+/*
+	Stylesheet: Galleries
+	Description: Image gallery styles
+*/
+
+.gallery {
+	@include rem('margin', 0 0 $large-spacing );
+	@include rem('padding-top', $small-padding);
+
+	background: $secondary-color;
+
+	li {
+		height: 100%;
+		position: relative;
+		margin-bottom: 0;
+	}
+
+	figure {
+		margin: 0;
+	}
+	
+	figcaption {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 3;
+		text-align: center;
+		color: #fff;
+		background: rgba($secondary-color, 0.75);
+
+		@include rem('padding', $large-padding);
+	}
+	
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+/*---- Stop visible js building ----*/
+.gallery {
+	> li {
+		display: none;
+
+		&:first-child {
+			display: block;
+		}
+
+		&.lcms-slide {
+			display: block;
+		}
+	}
+}

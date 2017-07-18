@@ -1,0 +1,8 @@
+/*
+	Theme Name: LGR
+	Description: Used to style the TinyMCE editor.
+*/
+
+@import url("style.css");
+
+body {padding: 20px; background-image: none;}

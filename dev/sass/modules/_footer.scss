@@ -1,0 +1,8 @@
+/*
+	Stylesheet: Footer
+	Description: Footer Styling
+*/
+
+#site-footer {
+	@include rem('padding', $section-padding 0);
+}

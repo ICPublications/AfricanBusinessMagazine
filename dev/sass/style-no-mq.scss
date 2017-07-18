@@ -1,0 +1,13 @@
+/*-- Singularity remove media queries --*/
+
+// Will not print media queries
+$breakpoint-no-queries: true;
+
+// Will print No Query Fallbacks
+$breakpoint-no-query-fallbacks: true;
+
+// Import style
+@import "style";
+
+// Import legacy layout fixes
+@import "layout/_legacy-layout";

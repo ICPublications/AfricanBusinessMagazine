@@ -1,0 +1,72 @@
+/*
+	Stylesheet: Advertising
+	Description: Advert styling
+*/
+
+/*---- Standard Units ----*/
+
+.ad-unit {
+	position: relative;
+	background: #f7f9f9;
+	
+	&.leaderboard, &.mpu, &.skyscraper { // Need to show mobile version
+		overflow: hidden;
+		display: none;
+
+		@include breakpoint($change-for-medium) { 
+			display: block;
+		}
+	}
+	&.leaderboard {
+		@include rem('margin', 0 auto $standard-spacing);
+		max-width: 100%;
+		width: 728px;
+		height: 90px;
+	}
+	&.mpu {
+		max-width: 100%;
+		width: 300px;
+		height: 250px;
+	}
+	&.skyscraper {
+		width: 160px;
+		height: 600px;
+		margin: 0 auto;
+	}
+	&.mobile {
+		@include rem('margin', 0 auto $section-spacing);
+		width: 300px;
+		height: 50px;
+	}
+	
+	@include breakpoint($change-for-medium) {
+		&.mobile {display: none;}
+	}
+	
+	.signpost {
+		display: none;
+		@include rem('padding', 3px 5px 2px);
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 3;
+		text-transform: uppercase;
+		font-size: 9px;
+		line-height: 1;
+		color: $body-font-color;
+		background: #fff;
+		border: 1px solid #ddd;
+		border-width: 0 1px 1px 0;
+	}
+}
+
+#content {
+	.ad-unit {
+		&.align-left {
+			@include rem('margin', $standard-spacing $small-section-spacing $standard-spacing 0);
+		}
+		&.align-right {
+			@include rem('margin', $standard-spacing 0 $standard-spacing $small-section-spacing);
+		}
+	}
+}

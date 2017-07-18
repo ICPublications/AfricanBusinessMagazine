@@ -1,0 +1,318 @@
+/*
+	Stylesheet: Navigation
+	Description: Navigation menu styling
+*/
+
+/*---- Primary and Secondary Navigation base styles ----*/
+
+#site-header .menu {
+	font-family: $navigation-font;
+
+	ul {
+		list-style: none;
+	}
+	li {margin-bottom: 0;}
+	a {
+		display: block; 
+		text-decoration: none;
+	}
+	
+	/* Hover state fallback */
+	> ul .sub-menu {display: none;}
+	
+	/* Second level */
+	> ul > li > ul {font-size: em(14px);}
+		
+	@include breakpoint($just-for-small) {
+		/* First level */
+		// > ul > li {border-bottom: 1px solid #ccc;}
+		
+		/* Second level */
+		> ul > li > ul > li > a {padding-left: $standard-spacing*2;}
+	}
+	
+	@include breakpoint($change-for-medium) {
+		/* Hover state fallback */
+		> ul li:hover > ul {display: inherit;}
+		
+		/* First level */
+		> ul {
+			z-index: 200;
+			@include flexbox();
+			justify-content: space-between;
+			width: 100%;
+
+			li {
+				@include flex(1 1 auto);
+			}
+		}
+		> ul > li {float: left;}
+		
+		/* Second level */
+		> ul li {position: relative;}
+		> ul .sub-menu {
+			position: absolute; 
+			left: 0; 
+			top: 100%; 
+			z-index: 5; 
+			width: 250px;
+			@include rem('padding', $standard-padding);
+			background: $block-color-2;
+			@include box-shadow(0 2px 2px 0 rgba(0,0,0,0.2));
+
+			a {
+				@include rem('padding', $small-padding 0);
+				color: $secondary-nav-color;
+
+				&:hover { color: $primary-color; text-decoration: underline; }
+			}
+
+			h4 {
+				font-family: $secondary-font;
+				@include rem('font-size', 15px);
+				font-weight: normal;
+				text-transform: uppercase;
+				color: $body-lighten;
+			}
+		}
+	}
+}
+
+/* Fallbacks */
+.no-flexbox {
+	#site-header .menu {
+		li {
+			@include rem('margin-right', 50px);
+
+			&:last-child { float: right; }
+		}
+	}
+}
+
+/*---- Primary and Secondary Navigation specific styles ----*/
+
+#menu-primary {
+	padding-top: $large-padding;
+
+	a {
+		padding: $standard-padding;
+		color: $primary-nav-color;
+	}
+
+	@include breakpoint($change-for-medium) {
+		padding: 0;
+
+		a { padding: $large-padding 0; }
+	}
+}
+
+#menu-secondary {
+	padding-top: $large-padding;
+	
+	a {
+		padding: $standard-padding;
+		color: $primary-nav-color;
+	}
+
+	@include breakpoint($change-for-medium) {
+		padding: 0;
+
+		> li > a {
+			@include rem('padding', $standard-padding 0);
+			@include rem('margin-right', 25px);
+			font-size: em(12px);
+			color: $secondary-nav-color;
+			text-transform: uppercase;
+
+			&:hover { color: $primary-color; }
+		}	
+	}
+}
+
+#site-header {
+	#magazine-dropdown {
+		@include breakpoint($just-for-small) {
+			display: block;
+			margin-top: $large-spacing;
+			border-top: 1px solid;
+			background: $block-color-2;
+
+			a { 
+				font-size: em(18px);
+				color: $secondary-nav-color;
+
+				&:after { @include arrow(3px, $secondary-nav-color, right); }
+			}
+
+			.latest-cover a {
+				float: left;
+				width: 40%;
+				padding: $standard-spacing;
+
+				&:after { display: none; }
+			}
+
+			li:last-child {
+				display: none;
+			}
+		}
+
+		@include breakpoint($change-for-medium) {
+			width: 400px;
+
+			> li:first-child {
+				@include position-span(4, 1, $breakpoint: 'medium');
+			}
+			> li:last-child {
+				@include position-span(8, 5, $breakpoint: 'medium');
+			}
+		}
+	}
+}
+
+#menu-region {
+	padding-top: $large-padding;
+
+	a {
+		padding: $standard-padding; 
+		color: $primary-nav-color; 
+	}
+}
+
+/*---- Social links ----*/
+.connect.list-icons {
+	@include breakpoint($just-for-small) {
+		float: none;
+		@include rem('padding', $large-padding);
+
+		li {
+			float: none;
+
+			a {
+				color: #fff;
+				font-size: em(30px);
+			}
+		}
+	}
+}
+
+@include breakpoint($change-for-medium) {
+	.connect {
+		a {
+			color: $secondary-nav-color;
+
+			&:hover { color: $primary-color; }
+		}
+	}
+}	
+
+/*---- Main links on small screens ----*/
+@include breakpoint($just-for-small) {
+	#site-header .menu ul a {
+		@include inline-block;
+		position: relative;
+		font-size: em(18px);
+		
+		&:after { 
+			@include pseudo-block('', block, absolute, 1);
+			@include arrow(3px, #fff, right);
+			right: 0;
+			top: 18px;
+			
+		}
+	}
+}		
+
+/*---- Search Icon ----*/
+#large-search-toggle {
+	@include breakpoint($change-for-medium) {
+		text-align: right;
+	}
+}
+
+/*---- Sliding Navigation ----*/
+@include breakpoint($just-for-small) {
+	.js {
+		.js-menu-build {
+			position: absolute;
+			left: -99999px;
+		}
+	}
+}
+
+.nav-overlay {
+	display: none;
+	position: absolute;
+	z-index: 99;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.4);
+
+	@include breakpoint($change-for-medium) { display: none !important; } // Make sure is hidden on larger screens
+}
+
+.toggle-buttons {
+	position: absolute;
+	top: 15px;
+	right: 5px;
+
+	> li {
+		float: left;
+		@include rem('margin-left', $standard-spacing);
+	}
+
+	a { 
+		float: left;
+		font-size: em(24px);
+		color: #fff;
+		text-decoration: none;
+	}
+
+	@include breakpoint($change-for-medium) {
+		display: none;
+	}
+}
+
+.sidenav-wrap {
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	width: 80%;
+	height: 100%;
+	background: $block-color-1;
+	-webkit-box-shadow: 4px 0 2px 0 rgba(0,0,0,0.2);
+	box-shadow: 4px 0 2px 0 rgba(0,0,0,0.2);
+
+	@include breakpoint($change-for-medium) {
+		position: static;
+		z-index: 0;
+		width: auto;
+		height: auto;
+		background: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+}
+
+.sidenav-close {
+	position: absolute;
+	@include rem('top', 10px);
+	@include rem('right', 10px);
+	color: $primary-nav-color;
+	text-decoration: none;
+
+	@extend %static-click;
+
+	@include breakpoint($change-for-medium) {
+		display: none !important; // javascript class. Ensures always hidden above breakpoint 
+	}
+
+	&:before {
+		@extend %icon-setup;
+		content: "\e612";
+	}
+}
+
+#menu-region-container {
+	@extend .hide-for-medium;
+}

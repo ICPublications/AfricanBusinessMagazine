@@ -1,0 +1,112 @@
+/*
+	Stylesheet: Buttons
+	Description: Button styling
+*/
+
+/*---- Standard ----*/
+
+.btn, .btn:visited {
+	@include rem('padding', $button-vertical-padding $button-horizontal-padding);
+	
+	display: inline-block;
+	font-family: $button-font;
+	font-size: em(13px);
+	text-transform: uppercase;
+	color: #fff;
+	background: $primary-color;
+	cursor: pointer;
+	text-decoration: none;
+	border: none;
+	
+	&:hover, &:active {
+		color: #fff;
+		background: lighten($primary-color, 10%);
+		border-color: darken($primary-color, 5%);
+	}
+
+	&.secondary {
+		background: $block-color-1;
+
+		&:hover, &:active { background: $primary-color; }
+	}
+
+	&.tertiary {
+		color: $body-font-color;
+		background: lighten($block-color-2, 2%);
+		border: 1px solid #ddd;
+
+		&:hover { color: #fff; border-color: $primary-color; background: $primary-color; text-decoration: none; }
+	}
+
+	&.block { display: block; text-align: center; }
+
+	&.fb {
+		background: #3b5999;
+		&:hover { background: darken(#3b5999, 7%); }
+	}
+
+	&.twit {
+		background: #4099ff;
+		&:hover { background: darken(#4099ff, 7%); }
+	}
+
+	&.share {
+		background: #88c425;
+		&:hover { background: darken(#88c425, 7%); }
+	}
+
+	&.rate {
+		background: #88c425;
+		&:hover { background: darken(#88c425, 7%); }
+	}
+
+	&.comment {
+		background: #88c425;
+		&:hover { background: darken(#88c425, 7%); }
+	}
+}
+
+.share-text {
+	display: none;
+	@include breakpoint($change-for-medium) { display: inline; }
+}
+
+/*---- Link buttons ----*/
+.link-btn {
+	@include inline-block;
+	position: relative;
+	font-family: $secondary-font;
+	font-size: em(15px);
+	text-decoration: none;
+
+	&:after { 
+		@include pseudo-block('', block, absolute, 1);
+		@include arrow(4px, $primary-color, right);
+		top: 8px;
+		right: -10px;
+
+	}
+	&:hover { text-decoration: underline; }
+}
+
+
+/*---- Button group ----*/
+
+.btn-group {
+	display: table;
+	width: 100%;
+
+	> li {
+		display: table-cell;
+	}
+
+	.btn {
+		@include rem('padding', $button-vertical-padding 0);
+		
+		display: block;
+		text-align: center;
+	}
+}
+
+.even-3 > li { width: 33%; }
+.even-2 > li { width: 50%; }

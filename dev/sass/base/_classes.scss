@@ -1,0 +1,98 @@
+/*
+	Stylesheet: Classes
+	Description: Useful global classes
+*/
+
+/*---- Classes ----*/
+
+.cf:before,.cf:after {content: ""; display: table;}
+.cf:after {clear: both;}
+.cf {zoom: 1;}
+
+.align-left {
+	@include breakpoint($change-for-medium) {
+		float: left;
+	}	
+}
+.align-right {
+	@include breakpoint($change-for-medium) {
+		float: right;
+	}	
+}
+.larger-font {font-size: 1.2em;}
+.smaller-font {font-size: 0.75em;}
+.left-text { text-align: left;}
+.center-text {text-align: center;}
+.right-text {text-align: right;}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+.hide-for-small {
+	// @extend .visuallyhidden;
+	display: none;
+	
+	@include breakpoint($change-for-medium) {
+		// clip: none;
+		// height: auto;
+		// margin: inherit;
+		// overflow: auto;
+		// padding: inherit;
+		// position: inherit;
+		// width: auto;
+		display: block;
+	}
+}
+.hide-for-medium {
+	@include breakpoint($change-for-medium) {
+		// border: 0;
+		// clip: rect(0 0 0 0);
+		// height: 1px;
+		// margin: -1px;
+		// overflow: hidden;
+		// padding: 0;
+		// position: absolute;
+		// width: 1px;
+		display: none;
+	}
+}
+.hide-for-large {
+	@include breakpoint($change-for-large) {
+		// border: 0;
+		// clip: rect(0 0 0 0);
+		// height: 1px;
+		// margin: -1px;
+		// overflow: hidden;
+		// padding: 0;
+		// position: absolute;
+		// width: 1px;
+		display: none;
+	}
+}
+
+/*---- Placeholders ----*/
+%pseudo-block {
+	content: '';
+	display: block;
+	position: absolute;
+	z-index: 1;
+}
+
+%smaller-text {
+	@include rem('font-size', $smaller-text-font-size);
+	line-height: $smaller-text-line-height;
+}
+
+@include breakpoint($change-for-medium) {
+	%smaller-text {
+		font-size: em($smaller-text-font-size);
+		line-height: $smaller-text-line-height;
+	}
+}
